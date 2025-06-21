@@ -18,19 +18,19 @@ export class AjaxService {
 
   // login API
   login(username: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}users/login`, { Username: username, Password: password });
+    return this.http.post<LoginResponse>(`${this.apiUrl}user/login`, { Username: username, Password: password });
   }
 
   loginHistory(userData: any): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}users/loginHistory`, userData);
+    return this.http.post<LoginResponse>(`${this.apiUrl}user/loginHistory`, userData);
   }
 
   getUserById(id: number): Observable<UserModel> {
-    return this.http.get<UserModel>(`${this.apiUrl}users/user/${id}`);
+    return this.http.get<UserModel>(`${this.apiUrl}user/user/${id}`);
   }
 
   fieldToUpdate(fieldData: any): Observable<FieldToUpdateModel> {
-    return this.http.post<FieldToUpdateModel>(`${this.apiUrl}users/profileToUpdate`, fieldData);
+    return this.http.post<FieldToUpdateModel>(`${this.apiUrl}user/profileToUpdate`, fieldData);
   }
 
   // getUserProfileById(id: number): Observable<UserModel> {

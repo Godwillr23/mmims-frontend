@@ -38,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   userImageUrl = environment.s3Url+"/Users/";
 
   loading = false;
+  isPageOnLogin = true;
 
   constructor(
     private emitterService: EmitterService,
@@ -49,15 +50,18 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     this.loginSubs = this.emitterService.loginComplete$.subscribe(loginStatus => {
       if (loginStatus === "LoginCompleted") {
+        this.isPageOnLogin = true;
         this.UserId = getUserId();
         this.isLoggedIn = true;
         this.getUserProfile(Number(this.UserId));
+
       }
     });
 
     this.logoutSubs = this.emitterService.logoutComplete$.subscribe(logoutStatus => {
       if (logoutStatus === "LogoutCompleted") {
         this.isLoggedIn = false;
+        this.isPageOnLogin = false;
       }
     });
   }
@@ -65,6 +69,10 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     const currentRoute = window.location.pathname;
+    if(currentRoute.includes('login') || currentRoute === '/'){
+        this.isPageOnLogin = false;
+      }
+
     this.UserId = getUserId();
 
     if (currentRoute !== '/' && currentRoute !== '/login') {
@@ -82,14 +90,6 @@ export class AppComponent implements OnInit, OnDestroy {
       } else {
         this.authService.logout();
         this.router.navigate(['/login']); // redirect to login
-      }
-
-      if (token) {
-        this.isLoggedIn = true;
-      }
-
-      if(pathname.includes('login')){
-        this.isLoggedIn = false;
       }
     }
   }

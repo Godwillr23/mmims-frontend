@@ -14,5 +14,15 @@
 }
 
 .container{
-    margin-top: 150px;
+    padding-top: 150px;
+    padding-bottom: 80px;
+}
+
+h6{
+    font-size: 14px;
+}
+
+input[readonly] {
+    background-color: cadetblue;
+    cursor: not-allowed;     /* optional: change cursor */
 }

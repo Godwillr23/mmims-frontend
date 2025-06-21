@@ -12,8 +12,10 @@ import { LoaderComponent } from './home/loader/loader.component';
 import { UpdateProfileComponent } from './account/update-profile/update-profile.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { PreInfieldAdminComponent } from './attedance-register/pre-infield-admin/pre-infield-admin.component';
 import { FormsModule } from '@angular/forms';
+import { AutocompleteOffDirective } from './autocomplete-off.directive';
+import { ProgressBarComponent } from './attendance-register/progress-bar/progress-bar.component';
+import { FieldAdminComponent } from './attendance-register/field-admin/field-admin.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,11 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     LoaderComponent,
     UpdateProfileComponent,
-    PreInfieldAdminComponent
+    AutocompleteOffDirective,
+    ProgressBarComponent,
+    FieldAdminComponent
   ],
+  exports: [AutocompleteOffDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,

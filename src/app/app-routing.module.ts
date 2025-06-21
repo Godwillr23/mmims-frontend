@@ -1,24 +1,29 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './account/login/login.component';
 import { SplashComponent } from './home/splash/splash.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { UpdateProfileComponent } from './account/update-profile/update-profile.component';
-import { PreInfieldAdminComponent } from './attedance-register/pre-infield-admin/pre-infield-admin.component';
+import { FieldAdminComponent } from './attendance-register/field-admin/field-admin.component';
 
 const routes: Routes = [
-  { path: '', component: SplashComponent },  // default route loads SplashComponent
+  { path: '', component: LoginComponent },  // default route loads SplashComponent
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'update-profile', component: UpdateProfileComponent },
-  { path: 'pre-infield-admin', component: PreInfieldAdminComponent }
+  { path: 'field-admin', component: FieldAdminComponent }
   // other routes...
 ];
 
+const routerOptions: ExtraOptions = {
+  useHash: false,
+  scrollPositionRestoration: 'disabled',  // disable automatic scroll to top
+  // or use 'top' to scroll to top on navigation
+};
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: false }) // <-- Here you set useHash option
-
+    RouterModule.forRoot(routes,routerOptions) // <-- Here you set useHash option
   ],
   exports: [RouterModule]
 })
